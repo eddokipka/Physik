@@ -221,13 +221,13 @@ erklaerung:"Ohm (Ω) ist die Einheit des Widerstands."
 },
 
 {
-frage:"Die Einheit der elektrischen Spannung ist Volt (V).",
+frage:"Die Einheit der Spannung ist Volt (V).",
 richtig:true,
 erklaerung:"Volt (V) ist die Einheit der elektrischen Spannung."
 },
 
 {
-frage:"Die Einheit der elektrischen Spannung ist Pascal (Pa).",
+frage:"Die Einheit der Spannung ist Pascal (Pa).",
 richtig:false,
 erklaerung:"Pascal (Pa) ist die Einheit des Drucks."
 },
@@ -297,6 +297,38 @@ function zeigeFrage(){
 
     document.getElementById("feedback").innerHTML = "";
     document.getElementById("nextBtn").style.display = "none";
+}
+
+function spieleRichtigTon() {
+    const audio = new AudioContext();
+    const osc = audio.createOscillator();
+
+    osc.type = "sine";
+    osc.frequency.value = 800;
+
+    osc.connect(audio.destination);
+    osc.start();
+
+    setTimeout(() => {
+        osc.stop();
+        audio.close();
+    }, 200);
+}
+
+function spieleFalschTon() {
+    const audio = new AudioContext();
+    const osc = audio.createOscillator();
+
+    osc.type = "sawtooth";
+    osc.frequency.value = 250;
+
+    osc.connect(audio.destination);
+    osc.start();
+
+    setTimeout(() => {
+        osc.stop();
+        audio.close();
+    }, 300);
 }
 
 function antwort(auswahl){
