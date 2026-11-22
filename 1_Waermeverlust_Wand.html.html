@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interaktive Musterlösung - Wärmeverlust</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#eef3f8;
+    margin:0;
+    padding:30px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(0,0,0,.15);
+}
+
+h1{
+    text-align:center;
+    color:#005fa3;
+}
+
+h2{
+    color:#005fa3;
+}
+
+.aufgabe{
+    background:#f4f9ff;
+    border-left:6px solid #0078d4;
+    padding:20px;
+    border-radius:8px;
+}
+
+.diagramm{
+    text-align:center;
+    margin:30px 0;
+}
+
+.schritt{
+    display:none;
+    background:#f8fbff;
+    border-left:5px solid #0078d4;
+    padding:15px;
+    margin-top:10px;
+    border-radius:6px;
+    font-size:1.1rem;
+}
+
+.formel{
+    font-family: Consolas, monospace;
+}
+
+.ergebnis{
+    background:#dff5dd;
+    border-left:5px solid green;
+    font-weight:bold;
+}
+
+button{
+    margin-top:25px;
+    background:#0078d4;
+    color:white;
+    border:none;
+    padding:14px 25px;
+    border-radius:8px;
+    font-size:1rem;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#005ea6;
+}
+
+.progress{
+    width:100%;
+    height:20px;
+    background:#ddd;
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:25px;
+}
+
+.progress-bar{
+    width:0%;
+    height:100%;
+    background:#28a745;
+    transition:0.4s;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Interaktive Musterlösung</h1>
+
+<div class="progress">
+    <div class="progress-bar" id="progress"></div>
+</div>
+
+<div class="aufgabe">
+
+<h2>Aufgabe</h2>
+
+<p>
+Eine Außenwand ist <b>4,5 m lang</b> und <b>3,0 m hoch</b>.
+Der Wärmedurchgangskoeffizient beträgt
+<b>U = 1,10 W/(m²K)</b>.
+</p>
+
+<p>
+Die Innentemperatur beträgt
+<b>20 °C</b>.
+</p>
+
+<p>
+Die Außentemperatur beträgt
+<b>-5 °C</b>.
+</p>
+
+<p>
+Nachträglich wird eine Wärmedämmung angebracht.
+Der neue Wärmedurchgangskoeffizient beträgt
+<b>U = 0,28 W/(m²K)</b>.
+</p>
+
+<h3>a)</h3>
+<p>Berechne den Wärmeverlust der ursprünglichen Wand.</p>
+
+<h3>b)</h3>
+<p>Berechne den Wärmeverlust nach dem Anbringen der Wärmedämmung.</p>
+
+<h3>c)</h3>
+<p>Berechne die eingesparte Wärmeleistung.</p>
+
+</div>
+
+<div class="diagramm">
+
+<svg width="700" height="260">
+
+<text x="60" y="45"
+      fill="red"
+      font-size="24">
+Innen 20°C
+</text>
+
+<text x="520" y="45"
+      fill="blue"
+      font-size="24">
+Außen -5°C
+</text>
+
+<rect x="230"
+      y="60"
+      width="220"
+      height="120"
+      fill="#d8d8d8"
+      stroke="black"
+      stroke-width="3"/>
+
+<text x="315"
+      y="130"
+      font-size="24">
+Wand
+</text>
+
+<line x1="120"
+      y1="120"
+      x2="210"
+      y2="120"
+      stroke="orange"
+      stroke-width="7"/>
+
+<polygon points="210,120 190,105 190,135"
+         fill="orange"/>
+
+<text x="70"
+      y="95"
+      fill="orange"
+      font-size="18">
+Wärmefluss
+</text>
+
+<text x="280"
+      y="220"
+      font-size="18">
+Länge = 4,5 m
+</text>
+
+<text x="470"
+      y="130"
+      font-size="18">
+Höhe = 3,0 m
+</text>
+
+</svg>
+
+</div>
+
+<h2>Musterlösung</h2>
+
+<!-- a) -->
+
+<div class="schritt">
+<h3>a) Wärmeverlust der ursprünglichen Wand</h3>
+</div>
+
+<div class="schritt">
+<b>Gegeben:</b><br>
+l = 4,5 m<br>
+h = 3,0 m<br>
+U = 1,10 W/(m²K)<br>
+θᵢ = 20 °C<br>
+θₐ = -5 °C
+</div>
+
+<div class="schritt formel">
+<b>Gesucht:</b><br>
+Q̇
+</div>
+
+<div class="schritt formel">
+<b>Grundformel:</b><br>
+Q̇ = U · A · ΔT
+</div>
+
+<div class="schritt formel">
+Benötigt werden die Größen:<br>
+U, A und ΔT
+</div>
+
+<div class="schritt formel">
+U ist bereits gegeben.
+</div>
+
+<div class="schritt formel">
+Zuerst wird die Temperaturdifferenz berechnet.
+</div>
+
+<div class="schritt formel">
+ΔT = θᵢ − θₐ
+</div>
+
+<div class="schritt formel">
+ΔT = 20 °C − (−5 °C)
+</div>
+
+<div class="schritt formel">
+ΔT = 25 K
+</div>
+
+<div class="schritt formel">
+Nun wird die Wandfläche berechnet.
+</div>
+
+<div class="schritt formel">
+A = l · h
+</div>
+
+<div class="schritt formel">
+A = 4,5 m · 3,0 m
+</div>
+
+<div class="schritt formel">
+A = 13,5 m²
+</div>
+
+<div class="schritt formel">
+Jetzt können alle Werte eingesetzt werden.
+</div>
+
+<div class="schritt formel">
+Q̇ = U · A · ΔT
+</div>
+
+<div class="schritt formel">
+Q̇ = 1,10 W/(m²K) · 13,5 m² · 25 K
+</div>
+
+<div class="schritt formel">
+Q̇ = 1,10 · 13,5 · 25 W
+</div>
+
+<div class="schritt formel">
+Q̇ = 371,25 W
+</div>
+
+<div class="schritt ergebnis">
+Antwort a): Der Wärmeverlust der ursprünglichen Wand beträgt
+<b>371,25 W</b>.
+</div>
+
+<!-- b) -->
+
+<div class="schritt">
+<h3>b) Wärmeverlust nach dem Anbringen der Wärmedämmung</h3>
+</div>
+
+<div class="schritt">
+Gegeben:<br>
+U = 0,28 W/(m²K)<br>
+A = 13,5 m²<br>
+ΔT = 25 K
+</div>
+
+<div class="schritt formel">
+Grundformel:<br>
+Q̇ = U · A · ΔT
+</div>
+
+<div class="schritt formel">
+Q̇ = 0,28 W/(m²K) · 13,5 m² · 25 K
+</div>
+
+<div class="schritt formel">
+Q̇ = 0,28 · 13,5 · 25 W
+</div>
+
+<div class="schritt formel">
+Q̇ = 94,5 W
+</div>
+
+<div class="schritt ergebnis">
+Antwort b): Der Wärmeverlust nach dem Anbringen der Wärmedämmung beträgt
+<b>94,5 W</b>.
+</div>
+
+<!-- c) -->
+
+<div class="schritt">
+<h3>c) Eingesparte Wärmeleistung</h3>
+</div>
+
+<div class="schritt formel">
+ΔQ̇ = Q̇₁ − Q̇₂
+</div>
+
+<div class="schritt formel">
+ΔQ̇ = 371,25 W − 94,5 W
+</div>
+
+<div class="schritt formel">
+ΔQ̇ = 276,75 W
+</div>
+
+<div class="schritt ergebnis">
+Antwort c): Durch die Wärmedämmung werden
+<b>276,75 W</b> Wärmeleistung eingespart.
+</div>
+
+<button onclick="nextStep()">
+Nächster Schritt
+</button>
+
+</div>
+
+<script>
+
+const steps = document.querySelectorAll(".schritt");
+const progress = document.getElementById("progress");
+
+let current = 0;
+
+function nextStep(){
+
+    if(current < steps.length){
+
+        steps[current].style.display = "block";
+
+        current++;
+
+        progress.style.width =
+            (current / steps.length * 100) + "%";
+    }
+}
+
+</script>
+
+</body>
+</html>
