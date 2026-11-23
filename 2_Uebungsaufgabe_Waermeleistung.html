@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interaktive Musterlösung - Wärmeverlust</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#eef3f8;
+    margin:0;
+    padding:30px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(0,0,0,.15);
+}
+
+h1{
+    text-align:center;
+    color:#005fa3;
+}
+
+h2{
+    color:#005fa3;
+}
+
+.aufgabe{
+    background:#f4f9ff;
+    border-left:6px solid #0078d4;
+    padding:20px;
+    border-radius:8px;
+}
+
+.diagramm{
+    text-align:center;
+    margin:30px 0;
+}
+
+.schritt{
+    display:none;
+    background:#f8fbff;
+    border-left:5px solid #0078d4;
+    padding:15px;
+    margin-top:10px;
+    border-radius:6px;
+    font-size:1.1rem;
+}
+
+.formel{
+    font-family: Consolas, monospace;
+}
+
+.ergebnis{
+    background:#dff5dd;
+    border-left:5px solid green;
+    font-weight:bold;
+}
+
+button{
+    margin-top:25px;
+    background:#0078d4;
+    color:white;
+    border:none;
+    padding:14px 25px;
+    border-radius:8px;
+    font-size:1rem;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#005ea6;
+}
+
+.progress{
+    width:100%;
+    height:20px;
+    background:#ddd;
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:25px;
+}
+
+.progress-bar{
+    width:0%;
+    height:100%;
+    background:#28a745;
+    transition:0.4s;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Interaktive Musterlösung</h1>
+
+<div class="progress">
+    <div class="progress-bar" id="progress"></div>
+</div>
+
+<div class="aufgabe">
+
+<h2>Aufgabe</h2>
+
+<p>
+Ein Wohnhaus erhält neue Fenster mit einer
+Dreischeiben-Isolierverglasung aus Normalglas,
+unbeschichtet. Der Scheibenaufbau beträgt 4-6-4-6-4
+und die Zwischenräume sind mit Krypton gefüllt.
+Die Fenster besitzen insgesamt eine Fläche von
+24,0 m². Die Innentemperatur beträgt 22 °C,
+die Außentemperatur −5 °C.
+Die alten Fenster besitzen einen
+Wärmedurchgangskoeffizienten von
+Ugalt = 4,5 W/(m²K).
+Der Energiepreis beträgt 0,20 €/kWh.
+</p>
+
+<h3>Aufgaben</h3>
+
+<p>
+a) Bestimme mithilfe des Tabellenbuchs den
+Wärmedurchgangskoeffizienten Ug der neuen Verglasung.
+Notiere den Wert mit der zugehörigen Einheit.
+</p>
+
+<p>
+b) Berechne, wie viel Wärmeleistung durch den
+Austausch der alten Fenster gegen die neuen Fenster
+eingespart wird. Gib das Ergebnis in Watt (W) an.
+</p>
+
+<p>
+c) Berechne die Kosteneinsparung im Monat Dezember
+(31 Tage), wenn der Temperaturunterschied während
+des gesamten Monats konstant bleibt.
+Gib das Ergebnis in Euro (€) an.
+</p>
+
+</div>
+
+<!-- Aufgabe a -->
+
+<div class="schritt">
+    <h2>a) Wärmedurchgangskoeffizient bestimmen</h2>
+</div>
+
+<div class="schritt">
+    <h3>Angaben für das Tabellenbuch</h3>
+</div>
+
+<div class="schritt formel">
+    Verglasung: Dreischeiben-Isolierverglasung
+</div>
+
+<div class="schritt formel">
+    Glasausführung: Normalglas, unbeschichtet
+</div>
+
+<div class="schritt formel">
+    Scheibenaufbau: 4-6-4-6-4
+</div>
+
+<div class="schritt formel">
+    Gasfüllung: Krypton
+</div>
+
+<div class="schritt">
+    Mit diesen Angaben wird im Tabellenbuch der passende
+    Wärmedurchgangskoeffizient gesucht.
+</div>
+
+<div class="schritt">
+    <h3>Wert aus dem Tabellenbuch ablesen</h3>
+</div>
+
+<div class="schritt formel">
+    Ugneu = 1,8 W/(m²K)
+</div>
+
+<div class="schritt ergebnis">
+    <b>Antwort:</b><br>
+    Der Wärmedurchgangskoeffizient der neuen Verglasung beträgt
+    <b>1,8 W/(m²K)</b>.
+</div>
+
+<div class="schritt">
+    <h2>b) Eingesparte Wärmeleistung berechnen</h2>
+</div>
+
+<div class="schritt">
+    <h3>Gegeben</h3>
+</div>
+
+<div class="schritt formel">
+    Ugalt = 4,5 W/(m²K)
+</div>
+
+<div class="schritt formel">
+    Ugneu = 1,8 W/(m²K)
+</div>
+
+<div class="schritt formel">
+    A = 24,0 m²
+</div>
+
+<div class="schritt formel">
+    Tᵢ = 22 °C
+</div>
+
+<div class="schritt formel">
+    Tₐ = -5 °C
+</div>
+
+<div class="schritt">
+    <h3>Gesucht</h3>
+</div>
+
+<div class="schritt formel">
+    ΔQ̇ = Q̇alt - Q̇neu 
+</div>
+
+<div class="schritt">
+    <h3>Grundformel für Q̇alt und Q̇neu</h3>
+</div>
+
+<div class="schritt formel">
+    Q̇ = Ug · A · ΔT 
+</div>
+
+<div class="schritt">
+    Die Formel muss zweimal angewandt werden einmal für Ugalt und einmal für Ugneu.
+</div>
+
+<div class="schritt">
+    ΔT (Temperaturunterschied) ist nicht gegeben. Er muss berechnet werden.
+</div>
+
+<div class="schritt formel">
+    ΔT = Tᵢ − Tₐ
+</div>
+
+<div class="schritt formel">
+    ΔT = Tᵢ − Tₐ = 22 °C - ( -5 °C) = 27 °C = 27 °K
+</div>
+
+<div class="schritt formel">
+    Q̇ = Ug · A · ΔT > alle benötigten Größen vorhanden > Einsetzen in Formel und berechnen. 2x
+</div>
+
+<div class="schritt formel">
+    Q̇alt = Ugalt · A · ΔT
+</div>
+
+<div class="schritt formel">
+    Q̇alt = Ugalt · A · ΔT = 4,5 W/(m²K) · 24,0 m² · 27 °K = 2916 W
+</div>
+
+<div class="schritt formel">
+    Q̇neu = Ugneu · A · ΔT
+</div>
+
+<div class="schritt formel">
+    Q̇neu = Ugneu · A · ΔT = 1,8 W/(m²K) · 24,0 m² · 27 °K = 1166,4 W 
+</div>
+
+<div class="schritt">
+    <h3>Fehlt noch was ?</h3>
+</div>
+
+<div class="schritt">
+    Eingesparte Waermeleistung berechnen.
+</div>
+
+<div class="schritt formel">
+    ΔQ̇ = Q̇alt - Q̇neu
+</div>
+
+<div class="schritt formel">
+    ΔQ̇ = Q̇alt - Q̇neu = 2916 W - 1166,4 W = 1749,6 W
+</div>
+
+<div class="schritt ergebnis">
+    <b>Antwort:</b><br>
+   Die eingesparte Waermeleistung betraegt 
+<b>1749,6 W</b>.
+</div>
+
+<!-- Aufgabe c -->
+
+<div class="schritt">
+    <h2>c) Kosteneinsparung im Monat Dezember</h2>
+</div>
+
+<div class="schritt">
+    <h3>Gegeben:</h3>
+</div>
+
+<div class="schritt formel">
+    ΔQ̇ = 1749,6 W
+</div>
+
+<div class="schritt formel">
+    Preis / h = 0,20 €/kWh
+</div>
+
+<div class="schritt formel">
+    Monat Dezember = 31 Tage
+</div>
+
+<div class="schritt formel">
+    1 Tag = 24 h
+</div>
+
+<div class="schritt">
+    <h3>Gesucht:</h3>
+</div>
+
+<div class="schritt formel">
+    Kosteneinsparung = ?
+</div>
+
+<div class="schritt">
+    <h3>Grundformel</h3>
+</div>
+
+<div class="schritt formel">
+    Kosteneinsparung = ΔQ̇ · t (Zeitraum) · Preis            "Leistung · Zeit = Energie"
+</div>
+
+<div class="schritt">
+    <h3>Zeitraum berechnen. Wir benötigen den Zeitraum in Stunden da der Preis "kWh/h" in pro Stunde angegeben ist.</h3>
+</div>
+
+<div class="schritt formel">
+    t = 31 tage · 24 h = 744 h
+</div>
+
+<div class="schritt">
+    <h3>Kosteneinsparung berechnen.</h3>
+</div>
+
+<div class="schritt formel">
+    Kosteneinsparung = ΔQ̇ · t · Preis
+</div>
+
+<div class="schritt formel">
+    Kosteneinsparung = ΔQ̇ · t · Preis = 1749,6 W · 744 h · 0,20 €/kWh        ? geht das so ?
+</div>
+
+<div class="schritt">
+    Nein auf die Einheiten achten W mit kW ? Wir rechnen um.
+</div>
+
+<div class="schritt formel">
+    1749,6 W = 1,7496 kW
+</div>
+
+<div class="schritt formel">
+Kosteneinsparung = ΔQ̇ · t · Preis = 1,7496 kW · 744 h · 0,20 €/kWh = 260,34 €
+</div>
+
+
+<div class="schritt ergebnis">
+    <b>Antwort:</b><br>
+    Im Monat Dezember werden etwa <b>260,34 €</b> Heizkosten eingespart.
+</div>
+<button onclick="nextStep()">
+Nächster Schritt
+</button>
+
+</div>
+
+<script>
+
+const steps = document.querySelectorAll(".schritt");
+const progress = document.getElementById("progress");
+
+let current = 0;
+
+function nextStep(){
+
+ if(current < steps.length){
+
+     steps[current].style.display = "block";
+
+     steps[current].scrollIntoView({
+         behavior: "smooth",
+         block: "center"
+     });
+
+     current++;
+
+     progress.style.width =
+     (current / steps.length * 100) + "%";
+
+ }
+
+}
+
+</script>
+
+</body>
+</html>
