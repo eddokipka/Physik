@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Physik Quiz - Level 1</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+}
+
+h1{
+    color:#38bdf8;
+}
+
+.card{
+    background:#1e293b;
+    padding:30px;
+    border-radius:15px;
+    margin-top:20px;
+}
+
+button{
+    padding:15px 30px;
+    margin:10px;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+.richtig{
+    background:#22c55e;
+    color:white;
+}
+
+.falsch{
+    background:#ef4444;
+    color:white;
+}
+
+#nextBtn{
+    background:#38bdf8;
+    color:white;
+    display:none;
+}
+
+#feedback{
+    margin-top:20px;
+    font-size:18px;
+    line-height:1.5;
+}
+
+#score{
+    font-size:22px;
+}
+
+#frageNummer{
+    color:#cbd5e1;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>⚛️ Physik Quiz</h1>
+<h2>Level 1: Größen und Einheiten</h2>
+
+<p id="score">Punkte: 0</p>
+<p id="frageNummer"></p>
+
+<div class="card">
+
+<h2 id="frage"></h2>
+
+<button class="richtig" onclick="antwort(true)">
+✅ Richtig
+</button>
+
+<button class="falsch" onclick="antwort(false)">
+❌ Falsch
+</button>
+
+<div id="feedback"></div>
+
+<button id="nextBtn" onclick="naechsteFrage()">
+Nächste Frage
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const fragen = [
+
+{
+frage:"Die Einheit der Strecke ist Meter (m).",
+richtig:true,
+erklaerung:"Meter (m) ist die SI-Einheit der Strecke. Mit ihr werden Längen und Entfernungen gemessen."
+},
+
+{
+frage:"Die Einheit der Fläche ist Quadratmeter (m²).",
+richtig:true,
+erklaerung:"Flächen werden in Quadratmetern angegeben. Ein Quadratmeter entspricht einer Fläche von 1 m × 1 m."
+},
+
+{
+frage:"Die Einheit der Zeit ist Newton (N).",
+richtig:false,
+erklaerung:"Zeit wird in Sekunden (s) gemessen. Newton (N) ist die Einheit der Kraft."
+},
+
+{
+frage:"Die Einheit der Geschwindigkeit ist m/s.",
+richtig:true,
+erklaerung:"Meter pro Sekunde (m/s) gibt an, wie viele Meter in einer Sekunde zurückgelegt werden."
+},
+
+{
+frage:"Die Einheit der Geschwindigkeit ist kg.",
+richtig:false,
+erklaerung:"Kilogramm (kg) ist die Einheit der Masse. Geschwindigkeit wird in m/s angegeben."
+},
+
+{
+frage:"Die Einheit der Beschleunigung ist m/s².",
+richtig:true,
+erklaerung:"Beschleunigung beschreibt die Änderung der Geschwindigkeit pro Sekunde und wird in m/s² angegeben."
+},
+
+{
+frage:"Die Einheit der Masse ist Kilogramm (kg).",
+richtig:true,
+erklaerung:"Das Kilogramm (kg) ist die SI-Basiseinheit der Masse."
+},
+
+{
+frage:"Die Einheit der Masse ist Joule (J).",
+richtig:false,
+erklaerung:"Joule (J) ist die Einheit der Energie. Die Masse wird in Kilogramm (kg) gemessen."
+},
+
+{
+frage:"Die Erdbeschleunigung wird in m/s² angegeben.",
+richtig:true,
+erklaerung:"Die Erdbeschleunigung g beträgt ungefähr 9,81 m/s²."
+},
+
+{
+frage:"Die Einheit der Kraft ist Newton (N).",
+richtig:true,
+erklaerung:"Newton (N) ist die SI-Einheit der Kraft."
+},
+
+{
+frage:"Die Einheit der Kraft ist Volt (V).",
+richtig:false,
+erklaerung:"Volt (V) ist die Einheit der Spannung. Kraft wird in Newton (N) gemessen."
+},
+
+{
+frage:"Die Einheit der Energie ist Joule (J).",
+richtig:true,
+erklaerung:"Energie wird in Joule (J) angegeben."
+},
+
+{
+frage:"Die Einheit der Arbeit ist Joule (J).",
+richtig:true,
+erklaerung:"Arbeit und Energie haben dieselbe Einheit: Joule (J)."
+},
+
+{
+frage:"Die Einheit der Leistung ist Watt (W).",
+richtig:true,
+erklaerung:"Watt (W) gibt an, wie viel Energie pro Sekunde umgesetzt wird."
+},
+
+{
+frage:"Die Einheit der Leistung ist Ampere (A).",
+richtig:false,
+erklaerung:"Ampere (A) ist die Einheit der Stromstärke. Leistung wird in Watt (W) gemessen."
+},
+
+{
+frage:"Die Einheit der Temperatur ist Kelvin (K).",
+richtig:true,
+erklaerung:"Kelvin (K) ist die SI-Basiseinheit der Temperatur."
+},
+
+{
+frage:"Die Einheit der Stromstärke ist Ampere (A).",
+richtig:true,
+erklaerung:"Ampere (A) misst die Stromstärke."
+},
+
+{
+frage:"Die Einheit der Stromstärke ist Ohm (Ω).",
+richtig:false,
+erklaerung:"Ohm (Ω) ist die Einheit des Widerstands."
+},
+
+{
+frage:"Die Einheit der Spannung ist Volt (V).",
+richtig:true,
+erklaerung:"Volt (V) ist die Einheit der elektrischen Spannung."
+},
+
+{
+frage:"Die Einheit der Spannung ist Pascal (Pa).",
+richtig:false,
+erklaerung:"Pascal (Pa) ist die Einheit des Drucks."
+},
+
+{
+frage:"Die Einheit des Widerstands ist Ohm (Ω).",
+richtig:true,
+erklaerung:"Ohm (Ω) beschreibt den elektrischen Widerstand."
+},
+
+{
+frage:"Die Einheit des Widerstands ist Watt (W).",
+richtig:false,
+erklaerung:"Watt (W) ist die Einheit der Leistung."
+},
+
+{
+frage:"Die Einheit des Drucks ist Pascal (Pa).",
+richtig:true,
+erklaerung:"Pascal (Pa) ist die SI-Einheit des Drucks."
+},
+
+{
+frage:"Die Einheit des Drucks ist Newton (N).",
+richtig:false,
+erklaerung:"Newton (N) ist die Einheit der Kraft."
+},
+
+{
+frage:"Die Einheit der Dichte ist kg/m³.",
+richtig:true,
+erklaerung:"Die Dichte gibt an, wie viel Masse in einem bestimmten Volumen enthalten ist."
+},
+
+{
+frage:"Die Einheit der Dichte ist Volt (V).",
+richtig:false,
+erklaerung:"Volt (V) ist die Einheit der elektrischen Spannung."
+}
+
+];
+
+function mischeFragen() {
+    for (let i = fragen.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [fragen[i], fragen[j]] = [fragen[j], fragen[i]];
+    }
+}
+
+mischeFragen();
+
+let punkte = 0;
+let aktuelleFrage = 0;
+
+zeigeFrage();
+
+function zeigeFrage(){
+
+    document.getElementById("frage").innerText =
+        fragen[aktuelleFrage].frage;
+
+    document.getElementById("frageNummer").innerText =
+        "Frage " +
+        (aktuelleFrage + 1) +
+        " von " +
+        fragen.length;
+
+    document.getElementById("feedback").innerHTML = "";
+    document.getElementById("nextBtn").style.display = "none";
+}
+
+function spieleRichtigTon() {
+    const audio = new AudioContext();
+    const osc = audio.createOscillator();
+
+    osc.type = "sine";
+    osc.frequency.value = 800;
+
+    osc.connect(audio.destination);
+    osc.start();
+
+    setTimeout(() => {
+        osc.stop();
+        audio.close();
+    }, 200);
+}
+
+function spieleFalschTon() {
+    const audio = new AudioContext();
+    const osc = audio.createOscillator();
+
+    osc.type = "sawtooth";
+    osc.frequency.value = 250;
+
+    osc.connect(audio.destination);
+    osc.start();
+
+    setTimeout(() => {
+        osc.stop();
+        audio.close();
+    }, 300);
+}
+
+function antwort(auswahl){
+
+    const aktuelle = fragen[aktuelleFrage];
+
+    if(auswahl === aktuelle.richtig){
+
+	spieleRichtigTon();
+
+        punkte++;
+
+        document.getElementById("feedback").innerHTML =
+        "<span style='color:lightgreen'><b>✅ Richtig!</b></span><br><br>" +
+        aktuelle.erklaerung;
+
+    }else{
+
+	spieleFalschTon();
+
+        document.getElementById("feedback").innerHTML =
+        "<span style='color:#ff8080'><b>❌ Falsch!</b></span><br><br>" +
+        aktuelle.erklaerung;
+    }
+
+    document.getElementById("score").innerText =
+        "Punkte: " + punkte;
+
+    document.getElementById("nextBtn").style.display =
+        "inline-block";
+}
+
+function naechsteFrage(){
+
+    aktuelleFrage++;
+
+    if(aktuelleFrage >= fragen.length){
+
+        let titel;
+
+        if(punkte >= 24){
+            titel = "🏆 Physik-Meister";
+        }
+        else if(punkte >= 18){
+            titel = "🥈 Sehr gut";
+        }
+        else if(punkte >= 13){
+            titel = "👍 Gut";
+        }
+        else{
+            titel = "📚 Weiter üben";
+        }
+
+        document.querySelector(".card").innerHTML =
+        `
+        <h2>Level abgeschlossen!</h2>
+        <h3>${punkte} von ${fragen.length} Punkten</h3>
+        <h2>${titel}</h2>
+        <button onclick="location.reload()">Neu starten</button>
+        `;
+
+        return;
+    }
+
+    zeigeFrage();
+}
+
+</script>
+
+</body>
+</html>
