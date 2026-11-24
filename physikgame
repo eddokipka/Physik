@@ -59,27 +59,15 @@ h1{
 <div class="container">
 
 <a class="card" href="1_Waermeverlust_Wand.html">
-    🌡️ Aufgabe 1
+    🎮 Level 1
     <br><br>
-    Wärmeverlust und Wärmeleistung.
+    Einheiten Wissen.
 </a>
 
 <a class="card" href="2_Uebungsaufgabe_Waermeleistung.html">
-    🌡️ Aufgabe 2
+    🎮 Level 2
     <br><br>
-    Wärmeleistung und Einsparung.
-</a>
-
-<a class="card" href="waerme3.html">
-    ♨️ Aufgabe 3
-    <br><br>
-    Spezifische Wärmekapazität
-</a>
-
-<a class="card" href="waerme4.html">
-    🌍 Aufgabe 4
-    <br><br>
-    Wärmeausdehnung
+    .
 </a>
 
 </div>
